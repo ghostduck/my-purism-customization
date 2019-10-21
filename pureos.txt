@@ -1,0 +1,66 @@
+# Problem 1: right click on touchpad does not work
+# https://tracker.pureos.net/w/troubleshooting/secondary_touchpad_button_problem/
+
+# Steps to fix:
+1. Open 'Tweaks', search in the menu
+2. Go to Keyboard & Mouse on the left
+3. Change to 'Area' in Mouse Click Emulation in the bottom
+
+# CLI version
+# Reference : https://askubuntu.com/questions/971067/how-can-i-script-the-settings-made-by-gnome-tweak-tool
+
+gsettings set org.gnome.desktop.peripherals.touchpad.click-method areas
+
+
+# Problem 2: vi settings
+# First check your vi version
+
+echo "set nocompatible" >> ~/.vimrc
+echo "set backspace=2" >> ~/.vimrc
+
+# Problem 3: command not found Python cnf .... problem
+
+```bash
+$ somenotfoundcommand
+
+command-not-found version: 0.3
+Python version: 3.7.3 final 0
+Distributor ID: PureOS
+Description:    PureOS
+Release:        8.0
+Codename:       amber
+Exception information:
+
+local variable 'cnf' referenced before assignment
+Trackback (most recent call last):
+  File "/usr/share/command-not-found/CommandNotFound/util.py", line 23, in crash_guard
+  callback()
+  File "/usr/lib/command-not-found", line 93, in main
+  if not cnf.advise(args[0], options.ignore_installed) and not options.no_failure_msg:
+UnboundLocalErrorL: local variable 'cnf' referenced before assignment
+```
+
+```bash
+# Remove until fixed, sorry
+# https://tracker.pureos.net/T637
+
+sudo apt remove command-not-found
+```
+
+# 4. Install my best apps
+
+https://keepassxc.org/download/#linux
+
+```bash
+# Download both file and checksum (Manual way)
+cat thatapp.DIGEST | sha256sum --check --strict
+
+chmod 744 that.AppImage
+
+# This way is preferred as the apt-get one does not get updated...
+```
+
+# git
+sudo apt-get install git
+# Too outdated
+# sudo apt-get install keepassxc
